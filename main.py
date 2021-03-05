@@ -7,7 +7,7 @@ _CATS_API_KEY = os.getenv("CAT_API")
 cats_url = "https://api.thecatapi.com/v1/images/search?limit=1&size=small&mime_types=jpg,png"
 
 def get_image(user):
-    response = requests.get(f"{cats_url}&sub_id={user}", headers={"x-api-key": "e35526e7-d4cb-49ee-a53d-774265c47598"})
+    response = requests.get(f"{cats_url}&sub_id={user}", headers={"x-api-key": _CATS_API_KEY})
     return response.json()
 
 client = discord.Client()
