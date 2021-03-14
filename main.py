@@ -4,7 +4,7 @@ import os
 
 _DISCORD_TOKEN = os.getenv("TOKEN")
 _CATS_API_KEY = os.getenv("CAT_API")
-cats_url = "https://api.thecatapi.com/v1/images/search?limit=1&size=small&mime_types=jpg,png"
+cats_url = "https://api.thecatapi.com/v1/images/search?limit=1&size=small&mime_types=jpg,png&category=7,4,2,1,5"
 
 def get_image(user):
     response = requests.get(f"{cats_url}&sub_id={user}", headers={"x-api-key": _CATS_API_KEY})
