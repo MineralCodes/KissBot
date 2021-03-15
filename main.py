@@ -24,5 +24,7 @@ async def on_message(message):
     if message.content.startswith("!Kiss?") or message.content.startswith("!kiss?"):
         image_info = get_image(message.author)
         await message.channel.send(image_info[0]["url"])
+    elif message.content.startswith("!Bippy?") or message.content.startswith("!bippy?"):
+        await message.channel.send("https://www.youtube.com/watch?v=jamjHQ_V_dQ")
 
 client.run(_DISCORD_TOKEN)
