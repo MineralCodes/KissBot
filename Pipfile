@@ -1,0 +1,13 @@
+[[source]]
+name = "KissBot"
+url = "https://github.com/MineralCodes/KissBot"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+discord = "*"
+requests = "*"
+
+[requires]
+python_version = "3.8.8"
