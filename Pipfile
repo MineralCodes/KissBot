@@ -6,8 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-discord = "*"
-requests = "*"
+discord = "1.0.1"
+requests = "2.25.1"
 
 [requires]
 python_version = "3.8.8"
