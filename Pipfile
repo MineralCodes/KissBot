@@ -1,13 +1,13 @@
 [[source]]
-name = "KissBot"
-url = "https://github.com/MineralCodes/KissBot"
+name = "pypi"
+url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
 
 [packages]
-discord = "1.0.1"
-requests = "2.25.1"
+requests = "*"
+discord-py = "*"
 
 [requires]
-python_version = "3.8.8"
+python_version = "3.8"
