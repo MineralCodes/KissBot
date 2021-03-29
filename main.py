@@ -4,6 +4,7 @@ import os
 
 _DISCORD_TOKEN = os.getenv("TOKEN")
 _CATS_API_KEY = os.getenv("CAT_API")
+_CRYPTO_API_KEY = os.getenv("CRYPTO_API")
 cats_url = "https://api.thecatapi.com/v1/images/search?limit=1&size=small&mime_types=jpg,png&category=7,4,2,1,5"
 
 
@@ -12,6 +13,13 @@ def get_image(user):
                             headers={"x-api-key": _CATS_API_KEY})
     return response.json()
 
+def get_doge():
+    response = requests.get(" https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=74", headers={"X-CMC_PRO_API_KEY": _CRYPTO_API_KEY})
+
+    json = response.json()
+    value = json["data"]["74"]["quote"]["USD"]["price"]
+
+    return value
 
 client = discord.Client()
 
@@ -46,6 +54,10 @@ async def on_message(message):
         else:
             await message.channel.send(
                 "you must mention the user you wish to bonk")
+    elif content.startswith("!doge?"):
+        doge = get_doge()
+        await message.channel.send(f"The current value of Dogecoin is ${doge:.4f}")
+
     elif content.startswith("!banish?"):
         if len(mentions) > 0:
             user = mentions[0]
