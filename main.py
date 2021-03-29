@@ -61,6 +61,7 @@ async def on_message(message):
         await message.channel.send(doge_message)
 
     elif content.startswith("!banish?"):
+        mentions = message.mentions
         if len(mentions) > 0:
             user = mentions[0]
             await user.move_to(None,  reason=f"{message.author} moved them for the memes!")
