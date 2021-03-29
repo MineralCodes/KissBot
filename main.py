@@ -15,11 +15,13 @@ def get_image(user):
 
 def get_doge():
     response = requests.get(" https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=74", headers={"X-CMC_PRO_API_KEY": _CRYPTO_API_KEY})
-
-    json = response.json()
-    value = json["data"]["74"]["quote"]["USD"]["price"]
-
-    return value
+    if(response.status_code == 200)
+        json = response.json()
+        value = json["data"]["74"]["quote"]["USD"]["price"]
+        message = f"The current value of Dogecoin is {value:.4f}"
+    else:
+        message = "Whoops! Cannot contact the Crypto server right now. Try again later"
+    return message
 
 client = discord.Client()
 
@@ -46,7 +48,7 @@ async def on_message(message):
         if len(mentions) > 0:
             channel = message.guild.afk_channel
             user = mentions[0]
-            await user.move_to(channel, reason="For the memes")
+            await user.move_to(channel, reason=f"{message.author} moved them for the memes!")
 
         elif len(mentions) > 1:
             await message.channel.send(
@@ -55,13 +57,13 @@ async def on_message(message):
             await message.channel.send(
                 "you must mention the user you wish to bonk")
     elif content.startswith("!doge?"):
-        doge = get_doge()
-        await message.channel.send(f"The current value of Dogecoin is ${doge:.4f}")
+        doge_message = get_doge()
+        await message.channel.send(doge_message)
 
     elif content.startswith("!banish?"):
         if len(mentions) > 0:
             user = mentions[0]
-            await user.move_to(None, reason="For the memes")
+            await user.move_to(None,  reason=f"{message.author} moved them for the memes!")
 
         elif len(mentions) > 1:
             await message.channel.send(
@@ -71,7 +73,7 @@ async def on_message(message):
                 "you must mention the user you wish to banish")
 
     elif content.startswith("!help?"):
-        help_info = "'!Kiss?' or '!kiss' to send a random cat image\n'!bippy?' to send the bippy video\n'!bonk? @user_mention' to send user to horny jail'\n'!banish? @user_mention' to disconnnect a user"
+        help_info = "'!Kiss?' or '!kiss' to send a random cat image\n'!bippy?' to send the bippy video\n'!bonk? @user_mention' to send user to horny jail'\n'!banish? @user_mention' to disconnnect a user\n!doge? will return the current value of Dogecoin to 4 decimal places"
         await message.channel.send(help_info)
 
 
