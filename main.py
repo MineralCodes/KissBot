@@ -15,7 +15,7 @@ def get_image(user):
 
 def get_doge():
     response = requests.get(" https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=74", headers={"X-CMC_PRO_API_KEY": _CRYPTO_API_KEY})
-    if(response.status_code == 200)
+    if(response.status_code == 200):
         json = response.json()
         value = json["data"]["74"]["quote"]["USD"]["price"]
         message = f"The current value of Dogecoin is {value:.4f}"
