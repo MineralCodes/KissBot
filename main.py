@@ -43,7 +43,7 @@ async def on_message(message):
     elif content.startswith("!bippy?"):
         await message.channel.send(
             "https://www.youtube.com/watch?v=jamjHQ_V_dQ")
-     elif content.startswith("!baby?"):
+    elif content.startswith("!baby?"):
         await message.channel.send(
             "https://www.youtube.com/watch?v=cWQO3BChV1w")
     elif content.startswith("!bonk?"):
